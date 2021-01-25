@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+    version="2.3">
+    
+    <validator>
+		<display-name>CPF Validator</display-name>
+		<validator-id>cpf</validator-id>
+		<validator-class>br.com.bluereports.validator.CPFValidator</validator-class>
+	</validator>
+	
+	<validator>
+		<display-name>CNPJ Validator</display-name>
+		<validator-id>cnpj</validator-id>
+		<validator-class>br.com.bluereports.validator.CNPJValidator</validator-class>
+	</validator>
+	
+	<validator>
+		<display-name>MOEDA Validator</display-name>
+		<validator-id>moeda</validator-id>
+		<validator-class>br.com.bluereports.validator.MoedaValidator</validator-class>
+	</validator>
+	
+	<navigation-rule>  
+	    <from-view-id>/*</from-view-id>  
+	    <navigation-case>  
+	        <from-outcome>restart</from-outcome>  
+	        <to-view-id>/pages/public/navpage.xhtml</to-view-id>  
+	        <redirect />
+	    </navigation-case>  
+	</navigation-rule>
+
+</faces-config>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16069289609170" configfile="/BlueReports/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf16104895092130" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16104895092131" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/public/navpage.xhtml" id="pf16104895092132" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf16104895092131" path="/pages/public/navpage.xhtml"/>
+  <links id="pf16104895092131" target="pf16104895092132" source="pf16104895092130" outcome="restart" redirect="true"/>
+</pageflow:Pageflow>

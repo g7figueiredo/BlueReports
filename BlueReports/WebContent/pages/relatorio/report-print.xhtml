@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>BlueReports | Relatório Nº #{relatorioBean.relatorio.numPedido} - #{relatorioBean.relatorio.cliente.nomeCliente} </title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Bootstrap 4 -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css" />
+
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet" />
+</h:head>
+<h:body onload="window.print()">
+<div class="wrapper">
+  <!-- Main content -->
+		<section class="invoice"> <!-- title row -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12" style="padding-left: 35%">
+			<!--    TITULO     -->
+            <h2>Relatório de Manutenção</h2>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+		<div class="row">
+			<div class="col-12">
+				<h4>
+					<br/>
+					<a href="https://www.bluetherm.com.br"><img src="logo.png" style="width: 48px; height: 38px;"></img></a> Bluetherm Climatização e Elétrica.
+					<small class="float-right">Data: <h:outputText
+							value="#{relatorioBean.relatorio.dataEmissao}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</small>
+				</h4>
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- info row -->
+		<div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+                  Emissor
+                  <address>
+                    <strong>Bluetherm Climatização e Elétrica.</strong><br/>
+                    CNPJ: <strong>22.121.138/0001-81</strong><br/>
+                    Rua Joaquim da Silva Lima, 71<br/>
+                    Jd. Cristino, Jandira, SP 06606-155<br/>
+                    Tel: (11) 4553-2071 / (11) 93395-2333<br/>
+                    Email: comercial@bluetherm.com.br
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  Cliente
+                  <address>
+                    <strong>#{relatorioBean.relatorio.cliente.nomeCliente}</strong><br/>
+                    CNPJ: <strong>#{relatorioBean.relatorio.cliente.numCpfCnpj}</strong><br/>
+                    #{relatorioBean.relatorio.cliente.endereco}, #{relatorioBean.relatorio.cliente.numEndereco}<br/>
+                    #{relatorioBean.relatorio.cliente.bairro}, #{relatorioBean.relatorio.cliente.cidade}, #{relatorioBean.relatorio.cliente.siglaUf} 
+                    #{relatorioBean.relatorio.cliente.cep}<br/>
+                    Tel: #{relatorioBean.relatorio.cliente.telefone}<br/>
+                    Email: #{relatorioBean.relatorio.cliente.email}
+                  </address>
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  <b>Pedido ##{relatorioBean.relatorio.numPedido}</b><br/>
+                  <b>Nº Relatório:</b> 000#{relatorioBean.relatorio.idRelatorio}<br/>
+                  <b>Resp. Técnico:</b> #{relatorioBean.relatorio.responsavel}<br/>
+                  
+                </div>
+                <!-- /.col -->
+              </div>
+		<!-- /.row --> <!-- Table row -->
+		<div class="row">
+              	<p class="lead"><h4><strong>Equipamento</strong></h4></p>
+                <div class="col-12 table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Descrição</th>
+                      <th>Marca</th>
+                      <th>Modelo</th>
+                      <th>Potência</th>
+                      <th>Cod. Cliente</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td><h:outputText value="#{relatorioBean.relatorio.equipamento}" /></td>
+                      <td><h:outputText value="#{relatorioBean.relatorio.marcaEquipamento}" /></td>
+                      <td><h:outputText value="#{relatorioBean.relatorio.tipoEquipamento}" /></td>
+                      <td><h:outputText value="#{relatorioBean.relatorio.potenciaEquipamento}" /> BTUS</td>
+                      <td><h:outputText value="#{relatorioBean.relatorio.idEquipamento}" /></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.col -->
+              </div>
+		<!-- /.row -->
+
+		<div class="row">
+                <!-- accepted payments column -->
+                <div class="col-12">
+                  <p class="lead"><h4><strong>Relatório de Diagnóstico</strong></h4></p>
+                  
+                  <div class="col-sm-12">
+                      <div class="form-group">
+					        <h:outputText style="word-wrap: break-word;" value="#{relatorioBean.relatorio.diagnostico}" />
+                      </div>
+                 </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-12">
+                  <p class="lead"><h4><strong>Medida Corretiva/Prevetiva</strong></h4></p>
+                  
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                        <h:outputText style="word-wrap: break-word;" value="#{relatorioBean.relatorio.corretiva}" />
+                      </div>
+                 </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-12">
+                  <p class="lead"><h4><strong>Observações</strong></h4></p>
+                  
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                        <h:outputText style="word-wrap: break-word;" value="#{relatorioBean.relatorio.observacoes}" />
+                      </div>
+                 </div>
+                </div>
+              </div>
+              
+              <h:panelGroup  rendered="#{relatorioBean.exibirFotos}">
+              <div class="row">
+                <!-- accepted payments column -->
+                <div class="col-12">
+                  <p class="lead"><h4><strong>Imagens</strong></h4></p>
+                </div>
+              </div>
+              
+              <div class="row">
+               
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <p:graphicImage cache="false" rendered="true" width="450" height="330"
+							value="#{imagemRelatorioBean.conteudoImagem}">
+							<f:param value="#{relatorioBean.relatorio.idRelatorio}" name="id" />
+							<f:param value="1" name="select" />
+						</p:graphicImage>
+						<br/>Legenda: <h:outputText value="#{relatorioBean.relatorio.legenda1}" />
+                      </div>
+                 </div>
+                 
+                 <div class="col-md-6">
+                      <div class="form-group">
+                        <p:graphicImage cache="false" rendered="true" width="450" height="330"
+							value="#{imagemRelatorioBean.conteudoImagem}">
+							<f:param value="#{relatorioBean.relatorio.idRelatorio}" name="id" />
+							<f:param value="2" name="select" />
+						</p:graphicImage>
+						<br/>Legenda: <h:outputText value="#{relatorioBean.relatorio.legenda2}" />
+                      </div>
+                 </div>
+                 
+              </div>
+              
+              <div class="row">
+               
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <p:graphicImage cache="false" rendered="true" width="450" height="330"
+							value="#{imagemRelatorioBean.conteudoImagem}">
+							<f:param value="#{relatorioBean.relatorio.idRelatorio}" name="id" />
+							<f:param value="3" name="select" />
+						</p:graphicImage>
+						<br/>Legenda: <h:outputText value="#{relatorioBean.relatorio.legenda3}" />
+                      </div>
+                 </div>
+                 
+                 <div class="col-md-6">
+                      <div class="form-group">
+                        <p:graphicImage cache="false" rendered="true" width="450" height="330"
+							value="#{imagemRelatorioBean.conteudoImagem}">
+							<f:param value="#{relatorioBean.relatorio.idRelatorio}" name="id" />
+							<f:param value="4" name="select" />
+						</p:graphicImage>
+						<br/>Legenda: <h:outputText value="#{relatorioBean.relatorio.legenda4}" />
+                      </div>
+                 </div>
+                 
+              </div>
+              
+              </h:panelGroup>
+              
+              
+		<!-- /.row --> 
+		</section>
+		<!-- /.content -->
+</div>
+<!-- ./wrapper -->
+</h:body>
+</html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+	<display-name>BlueReports</display-name>
+	<welcome-file-list>
+		<welcome-file>pages/public/index.xhtml</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<display-name>FacesServlet</display-name>
+		<servlet-name>FacesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+		<url-pattern>/faces/</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<filter>
+		<filter-name>conexaoFilter</filter-name>
+		<filter-class>br.com.bluereports.dbUtil.ConexaoHibernateFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>conexaoFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>securedapp</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	
+	
+	<!-- Allowed Roles -->
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>OPER</role-name>
+    </security-role>
+    
+    <!-- Proteção Cliente -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Cliente</web-resource-name>
+            <url-pattern>/pages/cliente/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+<!--             <role-name>GERENTE</role-name> -->
+        </auth-constraint>
+    </security-constraint>
+    
+    <!-- Proteção Relatório -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Relatório</web-resource-name>
+            <url-pattern>/pages/relatorio/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+<!--             <role-name>GERENTE</role-name> -->
+        </auth-constraint>
+    </security-constraint>
+    
+     <!-- Proteção Public -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Public</web-resource-name>
+            <url-pattern>/pages/public/navpage.xhtml</url-pattern>
+            <url-pattern>/images/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+<!--             <role-name>GERENTE</role-name> -->
+        </auth-constraint>
+    </security-constraint>
+    
+    <!--     Validação via Form -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/pages/public/login.xhtml</form-login-page>
+            <form-error-page>/pages/public/erro_login.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+
+</web-app>
